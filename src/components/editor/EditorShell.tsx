@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { Input, Select } from "@/components/ui/fields";
 import { Alert } from "@/components/ui/surfaces";
-import { IconCheck, IconEye, IconSpinner } from "@/components/ui/icons";
+import { IconArrowLeft, IconArrowRight, IconCheck, IconEye, IconSpinner } from "@/components/ui/icons";
 import { ResumeDocument } from "@/components/resume/ResumeDocument";
 import { ResumePaper } from "@/components/resume/ResumePaper";
 import { cn } from "@/lib/utils/cn";
@@ -177,7 +177,8 @@ export function EditorShell({
             className={buttonStyles("ghost", "sm")}
             aria-label="Voltar para meus currículos"
           >
-            ← Painel
+            <IconArrowLeft className="h-4 w-4" />
+            Painel
           </Link>
 
           <div className="min-w-40 flex-1">
@@ -220,11 +221,10 @@ export function EditorShell({
         ) : null}
 
         {/* Alternância para telas pequenas */}
-        <div className="mb-4 flex gap-2 lg:hidden" role="tablist" aria-label="Modo de exibição">
+        <div className="mb-4 flex gap-2 lg:hidden" role="group" aria-label="Modo de exibição">
           <button
             type="button"
-            role="tab"
-            aria-selected={view === "edit"}
+            aria-pressed={view === "edit"}
             onClick={() => setView("edit")}
             className={cn(
               "flex-1 rounded-md border px-3 py-2 text-sm font-medium",
@@ -237,8 +237,7 @@ export function EditorShell({
           </button>
           <button
             type="button"
-            role="tab"
-            aria-selected={view === "preview"}
+            aria-pressed={view === "preview"}
             onClick={() => setView("preview")}
             className={cn(
               "flex-1 rounded-md border px-3 py-2 text-sm font-medium",
@@ -328,9 +327,10 @@ export function EditorShell({
               <button
                 type="button"
                 onClick={() => saveThenNavigate(`/curriculos/${resume.id}/visualizar`)}
-                className="text-xs font-medium text-accent-700 hover:underline"
+                className="inline-flex items-center gap-1 text-xs font-medium text-accent-700 hover:underline"
               >
-                Exportar em PDF →
+                Exportar em PDF
+                <IconArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
             <ResumePaper maxWidth={720}>
