@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   CurrículoPro AI — Sistema de design (tokens)
+   Azul-marinho profundo (brand) + azul vivo (accent) sobre fundo claro.
+   ===================================================================== */
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Marca — azul-marinho profundo */
+  --color-brand-50: #eef4fb;
+  --color-brand-100: #d9e6f6;
+  --color-brand-200: #b3ccec;
+  --color-brand-300: #84abdd;
+  --color-brand-400: #5083c6;
+  --color-brand-500: #2f63a8;
+  --color-brand-600: #1f4d88;
+  --color-brand-700: #183d6c;
+  --color-brand-800: #123054;
+  --color-brand-900: #0c2542;
+  --color-brand-950: #071729;
+
+  /* Ação — azul vivo */
+  --color-accent-50: #eaf2ff;
+  --color-accent-100: #d3e4ff;
+  --color-accent-200: #a9c8ff;
+  --color-accent-300: #7aa8ff;
+  --color-accent-400: #4a86f7;
+  --color-accent-500: #1f66e5;
+  --color-accent-600: #1355c9;
+  --color-accent-700: #0f44a0;
+  --color-accent-800: #0d377e;
+  --color-accent-900: #0b2d64;
+
+  /* Confirmações */
+  --color-success-50: #ecfdf3;
+  --color-success-100: #d1fadf;
+  --color-success-500: #12a15f;
+  --color-success-600: #0e8a4f;
+  --color-success-700: #0a6b3d;
+
+  /* Erros */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-500: #d9423c;
+  --color-danger-600: #c8312b;
+  --color-danger-700: #a32620;
+
+  /* Avisos */
+  --color-warning-50: #fff8ec;
+  --color-warning-100: #fdeccc;
+  --color-warning-600: #b7791f;
+  --color-warning-700: #8f5d12;
+
+  /* Superfícies neutras */
+  --color-canvas: #f6f8fb;
+  --color-surface: #ffffff;
+  --color-line: #e3e8ef;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  --shadow-card: 0 1px 2px rgba(12, 37, 66, 0.06),
+    0 1px 3px rgba(12, 37, 66, 0.08);
+  --shadow-pop: 0 8px 24px rgba(12, 37, 66, 0.12);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-brand-950);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Foco visível e consistente para navegação por teclado */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-accent-200);
+  }
+}
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .sr-only-focusable:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 0.75rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--color-brand-900);
+    color: #fff;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* =====================================================================
+   Pré-visualização de impressão (papel A4)
+   Usada na página de visualização e na exportação via impressão.
+   ===================================================================== */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 14mm 16mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  /* No papel, as margens vêm do @page — zera o padding interno do documento. */
+  .print-area .resume-document {
+    padding: 0 !important;
+  }
+
+  .resume-section {
+    break-inside: avoid;
+  }
+
+  .resume-item {
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
