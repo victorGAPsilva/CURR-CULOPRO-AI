@@ -8,7 +8,7 @@ import type {
 import { cn } from "@/lib/utils/cn";
 
 const controlBase =
-  "w-full rounded-md border bg-white text-brand-950 placeholder:text-brand-300 transition-colors focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:border-accent-500 focus-visible:outline-accent-500/30 disabled:bg-brand-50 disabled:text-brand-400";
+  "w-full rounded-md border bg-white text-brand-950 placeholder:text-brand-300 transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:border-accent-500 focus-visible:outline-accent-500/30 disabled:bg-brand-50 disabled:text-brand-400";
 
 export function Input({
   className,

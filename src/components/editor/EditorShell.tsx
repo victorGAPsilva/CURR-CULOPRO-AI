@@ -227,7 +227,7 @@ export function EditorShell({
             aria-pressed={view === "edit"}
             onClick={() => setView("edit")}
             className={cn(
-              "flex-1 rounded-md border px-3 py-2 text-sm font-medium",
+              "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors duration-fast ease-standard",
               view === "edit"
                 ? "border-accent-500 bg-accent-50 text-accent-700"
                 : "border-line bg-white text-brand-700",
@@ -240,7 +240,7 @@ export function EditorShell({
             aria-pressed={view === "preview"}
             onClick={() => setView("preview")}
             className={cn(
-              "flex-1 rounded-md border px-3 py-2 text-sm font-medium",
+              "flex-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors duration-fast ease-standard",
               view === "preview"
                 ? "border-accent-500 bg-accent-50 text-accent-700"
                 : "border-line bg-white text-brand-700",
@@ -252,7 +252,7 @@ export function EditorShell({
 
         <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
           {/* Coluna de edição */}
-          <div className={cn("space-y-5", view === "preview" && "hidden lg:block")}>
+          <div className={cn("space-y-5 animate-fade-in", view === "preview" && "hidden lg:block")}>
             <div className="rounded-lg border border-line bg-white p-5 shadow-[var(--shadow-card)]">
               <div className="flex flex-wrap items-center gap-3">
                 <div className="flex-1">
@@ -295,7 +295,7 @@ export function EditorShell({
                 <a
                   key={link.id}
                   href={`#secao-${link.id}`}
-                  className="rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-brand-700 hover:border-brand-200 hover:bg-brand-50"
+                  className="rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-brand-700 transition-colors duration-fast ease-standard hover:border-brand-200 hover:bg-brand-50"
                 >
                   {link.label}
                 </a>
@@ -319,7 +319,7 @@ export function EditorShell({
           </div>
 
           {/* Coluna de pré-visualização */}
-          <div className={cn("lg:sticky lg:top-24", view === "edit" && "hidden lg:block")}>
+          <div className={cn("lg:sticky lg:top-24 animate-fade-in", view === "edit" && "hidden lg:block")}>
             <div className="mb-2 flex items-center justify-between">
               <h2 className="text-sm font-semibold text-brand-900">
                 Pré-visualização (A4)
@@ -355,7 +355,7 @@ function SaveIndicator({
 }) {
   if (status === "saving") {
     return (
-      <span className="flex items-center gap-1.5 text-xs text-brand-500" role="status">
+      <span className="flex items-center gap-1.5 text-xs text-brand-500 animate-fade-in" role="status">
         <IconSpinner className="h-4 w-4" />
         Salvando…
       </span>
@@ -363,7 +363,7 @@ function SaveIndicator({
   }
   if (status === "dirty") {
     return (
-      <span className="flex items-center gap-1.5 text-xs text-warning-700" role="status">
+      <span className="flex items-center gap-1.5 text-xs text-warning-700 animate-fade-in" role="status">
         <span aria-hidden className="h-2 w-2 rounded-full bg-warning-600" />
         Não salvo
       </span>
@@ -371,14 +371,14 @@ function SaveIndicator({
   }
   if (status === "error") {
     return (
-      <span className="flex items-center gap-1.5 text-xs text-danger-700" role="status">
+      <span className="flex items-center gap-1.5 text-xs text-danger-700 animate-fade-in" role="status">
         <span aria-hidden className="h-2 w-2 rounded-full bg-danger-600" />
         Erro ao salvar
       </span>
     );
   }
   return (
-    <span className="flex items-center gap-1.5 text-xs text-success-700" role="status">
+    <span className="flex items-center gap-1.5 text-xs text-success-700 animate-fade-in" role="status">
       <IconCheck className="h-4 w-4" />
       Salvo às {timeLabel(lastSavedAt)}
     </span>

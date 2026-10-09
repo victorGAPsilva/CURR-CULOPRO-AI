@@ -28,7 +28,7 @@ export function TemplateShowcase() {
               aria-pressed={active === template.id}
               onClick={() => setActive(template.id)}
               className={cn(
-                "rounded-lg border px-4 py-3 text-left transition-colors",
+                "rounded-lg border px-4 py-3 text-left transition-colors duration-fast ease-standard",
                 active === template.id
                   ? "border-accent-500 bg-accent-50"
                   : "border-line bg-white hover:border-brand-200",
@@ -53,7 +53,7 @@ export function TemplateShowcase() {
         <p className="mt-4 text-sm text-brand-600">{meta.description}</p>
       </div>
 
-      <div className="rounded-xl bg-brand-50 p-4 sm:p-6">
+      <div key={meta.id} className="rounded-xl bg-brand-50 p-4 sm:p-6 animate-fade-in">
         <ResumePaper maxWidth={720}>
           <ResumeDocument content={SAMPLE_RESUME} templateId={active} />
         </ResumePaper>

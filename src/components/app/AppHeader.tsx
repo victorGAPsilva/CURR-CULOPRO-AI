@@ -12,13 +12,13 @@ export function AppHeader({ user }: { user: UserRecord }) {
           <nav className="hidden items-center gap-1 sm:flex" aria-label="Navegação">
             <Link
               href="/painel"
-              className="rounded-md px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50"
+              className="rounded-md px-3 py-2 text-sm font-medium text-brand-700 transition-colors duration-fast ease-standard hover:bg-brand-50"
             >
               Meus currículos
             </Link>
             <Link
               href="/precos"
-              className="rounded-md px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50"
+              className="rounded-md px-3 py-2 text-sm font-medium text-brand-700 transition-colors duration-fast ease-standard hover:bg-brand-50"
             >
               Planos
             </Link>

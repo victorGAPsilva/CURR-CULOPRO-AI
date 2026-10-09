@@ -39,7 +39,7 @@ export function MobileMenu({
         ref={triggerRef}
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="rounded-md p-2 text-brand-800 hover:bg-brand-50"
+        className="rounded-md p-2 text-brand-800 transition-colors duration-fast ease-standard hover:bg-brand-50"
         aria-expanded={open}
         aria-controls="menu-mobile"
         aria-label={open ? "Fechar menu" : "Abrir menu"}
@@ -50,7 +50,7 @@ export function MobileMenu({
       {open ? (
         <div
           id="menu-mobile"
-          className="absolute left-0 right-0 top-full border-b border-line bg-white px-4 py-4 shadow-[var(--shadow-card)]"
+          className="absolute left-0 right-0 top-full border-b border-line bg-white px-4 py-4 shadow-[var(--shadow-card)] animate-menu-in"
         >
           <nav className="flex flex-col gap-1" aria-label="Navegação principal">
             {links.map((link) => (
@@ -58,7 +58,7 @@ export function MobileMenu({
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm font-medium text-brand-800 hover:bg-brand-50"
+                className="rounded-md px-3 py-2 text-sm font-medium text-brand-800 transition-colors duration-fast ease-standard hover:bg-brand-50"
               >
                 {link.label}
               </Link>

@@ -102,7 +102,7 @@ export function Modal({
       role="presentation"
     >
       <div
-        className="absolute inset-0 bg-brand-950/40"
+        className="absolute inset-0 bg-brand-950/40 animate-fade-in"
         onClick={onClose}
         aria-hidden
       />
@@ -113,7 +113,7 @@ export function Modal({
         aria-labelledby={titleId}
         aria-describedby={description ? descId : undefined}
         className={cn(
-          "relative w-full rounded-lg border border-line bg-white shadow-[var(--shadow-pop)]",
+          "relative w-full rounded-lg border border-line bg-white shadow-[var(--shadow-pop)] animate-rise-in",
           size === "sm" ? "max-w-md" : "max-w-lg",
         )}
       >
@@ -132,7 +132,7 @@ export function Modal({
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="rounded-md p-1 text-brand-400 hover:bg-brand-50 hover:text-brand-700"
+            className="rounded-md p-1 text-brand-400 transition-colors duration-fast ease-standard hover:bg-brand-50 hover:text-brand-700"
           >
             <IconClose className="h-5 w-5" />
           </button>
