@@ -67,6 +67,53 @@
   --shadow-card: 0 1px 2px rgba(12, 37, 66, 0.06),
     0 1px 3px rgba(12, 37, 66, 0.08);
   --shadow-pop: 0 8px 24px rgba(12, 37, 66, 0.12);
+
+  /* ------------------------------------------------------------------
+     Movimento — durações, curvas e animações padrão do sistema.
+     Uso: communicatem mudança de estado com movimentos curtos,
+     controlados e consistentes. Desativados por prefers-reduced-motion.
+     ------------------------------------------------------------------ */
+  --duration-fast: 150ms;
+  --duration-normal: 220ms;
+  --duration-slow: 320ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-fade-in: fade-in var(--duration-normal) var(--ease-standard);
+  --animate-rise-in: rise-in var(--duration-normal) var(--ease-emphasized);
+  --animate-menu-in: menu-in var(--duration-fast) var(--ease-standard);
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer base {
@@ -100,6 +147,25 @@
 }
 
 @layer utilities {
+  /* Durações do sistema de movimento (tokens em @theme).
+     Define --tw-duration para casar com transition-* do Tailwind
+     (que lê var(--tw-duration, padrão)) e transition-duration direto,
+     tornando a regra independente da ordem no cascade. */
+  .duration-fast {
+    --tw-duration: var(--duration-fast);
+    transition-duration: var(--duration-fast);
+  }
+
+  .duration-normal {
+    --tw-duration: var(--duration-normal);
+    transition-duration: var(--duration-normal);
+  }
+
+  .duration-slow {
+    --tw-duration: var(--duration-slow);
+    transition-duration: var(--duration-slow);
+  }
+
   .container-page {
     width: 100%;
     max-width: 72rem;
