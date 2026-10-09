@@ -18,15 +18,14 @@ export function TemplateShowcase() {
     <div className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-start">
       <div>
         <div
-          role="tablist"
+          role="group"
           aria-label="Modelos de currículo"
           className="flex flex-col gap-2"
         >
           {TEMPLATES.map((template) => (
             <button
               key={template.id}
-              role="tab"
-              aria-selected={active === template.id}
+              aria-pressed={active === template.id}
               onClick={() => setActive(template.id)}
               className={cn(
                 "rounded-lg border px-4 py-3 text-left transition-colors",
