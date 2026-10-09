@@ -53,7 +53,7 @@ export function TemplateShowcase() {
         <p className="mt-4 text-sm text-brand-600">{meta.description}</p>
       </div>
 
-      <div key={meta.id} className="rounded-xl bg-brand-50 p-4 sm:p-6 animate-fade-in">
+      <div key={meta.id} className="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-100 animate-fade-in sm:p-6">
         <ResumePaper maxWidth={720}>
           <ResumeDocument content={SAMPLE_RESUME} templateId={active} />
         </ResumePaper>

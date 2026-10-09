@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
+import { SectionHeader } from "@/components/marketing/SectionHeader";
 import { TemplateShowcase } from "@/components/marketing/TemplateShowcase";
 import { ResumeDocument } from "@/components/resume/ResumeDocument";
 import { ResumePaper } from "@/components/resume/ResumePaper";
@@ -10,10 +11,7 @@ import { Badge } from "@/components/ui/surfaces";
 import { SAMPLE_RESUME } from "@/lib/resume/sample";
 import {
   IconArrowRight,
-  IconBriefcase,
   IconCheck,
-  IconDocument,
-  IconDownload,
   IconPlus,
   IconSparkles,
 } from "@/components/ui/icons";
@@ -27,18 +25,15 @@ export const metadata: Metadata = {
 
 const steps = [
   {
-    icon: <IconDocument className="h-6 w-6" />,
-    title: "1. Preencha seus dados",
+    title: "Preencha seus dados",
     text: "Informe formação, experiências, cursos e habilidades. Sem campos desnecessários e com progresso visível.",
   },
   {
-    icon: <IconSparkles className="h-6 w-6" />,
-    title: "2. Peça sugestões à IA",
+    title: "Peça sugestões à IA",
     text: "Melhore a redação do resumo e das atividades. A IA ajusta a apresentação sem inventar fatos sobre você.",
   },
   {
-    icon: <IconDownload className="h-6 w-6" />,
-    title: "3. Revise e exporte",
+    title: "Revise e exporte",
     text: "Escolha o modelo, confira a pré-visualização em A4 e baixe o PDF com o conteúdo real do seu currículo.",
   },
 ];
@@ -70,6 +65,13 @@ const benefits = [
   },
 ];
 
+const facts = [
+  "Três modelos prontos para A4",
+  "Exportação em PDF com texto real",
+  "Sugestões que não inventam fatos",
+  "Salvamento na sua conta",
+];
+
 const faqs = [
   {
     q: "A IA pode inventar informações no meu currículo?",
@@ -93,6 +95,16 @@ const faqs = [
   },
 ];
 
+const assistantPoints = [
+  "Reescreve resumo e descrições de experiência",
+  "Sugere verbos de ação e corrige a escrita",
+  "Aponta informações essenciais que ainda faltam",
+  "Adapta a linguagem para uma vaga específica",
+];
+
+const budgetOut = `“Eu trabalhei com atendimento ao cliente e resolvia os problemas da loja.”`;
+const budgetIn = `“Profissional de atendimento com experiência em suporte ao cliente e resolução de problemas, com foco em qualidade e organização.”`;
+
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -100,35 +112,42 @@ export default function HomePage() {
 
       <main id="conteudo" className="flex-1">
         {/* Hero */}
-        <section className="border-b border-line bg-white">
-          <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-20">
+        <section className="relative overflow-hidden border-b border-line bg-white">
+          <div
+            aria-hidden
+            className="paper-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black_0%,black_55%,transparent_100%)]"
+          />
+          <div className="container-page relative grid gap-12 py-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-24">
             <div>
-              <Badge tone="accent" className="mb-4">
+              <Badge tone="accent" className="mb-5">
                 Currículos com apoio de IA
               </Badge>
-              <h1 className="text-3xl font-bold leading-tight tracking-tight text-brand-950 sm:text-4xl lg:text-[2.6rem]">
-                Seu próximo passo profissional começa com um bom currículo.
+              <h1 className="font-display text-4xl font-medium leading-[1.06] tracking-tight text-brand-950 sm:text-5xl lg:text-[3.3rem]">
+                O currículo que{" "}
+                <span className="box-decoration-clone bg-[linear-gradient(transparent_62%,var(--color-accent-200)_0%)]">
+                  apresenta você
+                </span>{" "}
+                com clareza.
               </h1>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-brand-600 sm:text-lg">
-                Organize suas experiências, destaque suas habilidades e crie um
-                currículo profissional com ajuda da inteligência artificial.
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-brand-600 sm:text-lg">
+                Organize formação, experiências e habilidades em um documento
+                A4, com sugestões da IA que melhoram a escrita — sem inventar
+                fatos sobre a sua trajetória.
               </p>
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link href="/criar-conta" className={buttonStyles("primary", "lg")}>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/criar-conta"
+                  className={buttonStyles("primary", "lg", "group")}
+                >
                   Criar meu currículo
-                  <IconArrowRight className="h-4 w-4" />
+                  <IconArrowRight className="h-4 w-4 transition-transform duration-fast ease-standard group-hover:translate-x-0.5" />
                 </Link>
                 <Link href="/#modelos" className={buttonStyles("outline", "lg")}>
                   Ver modelos
                 </Link>
               </div>
-              <ul className="mt-7 grid gap-2 text-sm text-brand-600 sm:grid-cols-2">
-                {[
-                  "Três modelos prontos para A4",
-                  "Exportação em PDF com texto real",
-                  "Sugestões que não inventam fatos",
-                  "Salvamento na sua conta",
-                ].map((item) => (
+              <ul className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-brand-100 pt-5 text-sm text-brand-600">
+                {facts.map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <IconCheck className="h-4 w-4 shrink-0 text-success-600" />
                     {item}
@@ -141,11 +160,14 @@ export default function HomePage() {
               <div className="absolute -top-3 left-4 z-10">
                 <Badge tone="brand">Exemplo ilustrativo</Badge>
               </div>
-              <div className="rounded-xl bg-brand-50 p-4 sm:p-6">
+              <div className="rounded-xl bg-brand-50 p-4 shadow-[var(--shadow-card)] ring-1 ring-brand-100 sm:p-6">
                 <ResumePaper maxWidth={640}>
                   <ResumeDocument content={SAMPLE_RESUME} templateId="classic" />
                 </ResumePaper>
               </div>
+              <p className="mt-3 text-center text-xs text-brand-400">
+                Pré-visualização em A4 do modelo Clássico.
+              </p>
             </div>
           </div>
         </section>
@@ -153,22 +175,22 @@ export default function HomePage() {
         {/* Como funciona */}
         <section id="como-funciona" className="scroll-mt-20 py-16 lg:py-20">
           <div className="container-page">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold tracking-tight text-brand-950 sm:text-3xl">
-                Como funciona
-              </h2>
-              <p className="mt-2 text-brand-600">
-                Do primeiro rascunho ao PDF, em um fluxo simples e direto.
-              </p>
-            </div>
-            <ol className="mt-10 grid gap-6 md:grid-cols-3">
-              {steps.map((step) => (
-                <li
-                  key={step.title}
-                  className="rounded-lg border border-line bg-white p-6 shadow-[var(--shadow-card)]"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-900 text-white">
-                    {step.icon}
+            <SectionHeader
+              index="01"
+              title="Como funciona"
+              text="Do primeiro rascunho ao PDF, em um fluxo simples e direto."
+            />
+            <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
+              {steps.map((step, i) => (
+                <li key={step.title} className="group relative">
+                  {i < steps.length - 1 ? (
+                    <span
+                      aria-hidden
+                      className="absolute left-11 right-[-1.5rem] top-5 hidden h-px bg-brand-200 md:block"
+                    />
+                  ) : null}
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-200 bg-white font-display text-lg italic leading-none text-brand-600 transition-colors duration-fast ease-standard group-hover:border-brand-900 group-hover:bg-brand-900 group-hover:text-white">
+                    {String(i + 1).padStart(2, "0")}
                   </div>
                   <h3 className="mt-4 text-base font-semibold text-brand-900">
                     {step.title}
@@ -185,20 +207,21 @@ export default function HomePage() {
         {/* Benefícios */}
         <section className="border-y border-line bg-white py-16 lg:py-20">
           <div className="container-page">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold tracking-tight text-brand-950 sm:text-3xl">
-                Por que usar o CurrículoPro AI
-              </h2>
-              <p className="mt-2 text-brand-600">
-                Recursos pensados para quem precisa de um currículo confiável,
-                rápido e honesto.
-              </p>
-            </div>
-            <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-              {benefits.map((benefit) => (
-                <div key={benefit.title} className="flex gap-3">
-                  <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-accent-600" />
-                  <div>
+            <SectionHeader
+              index="02"
+              title="Por que usar o CurrículoPro AI"
+              text="Recursos pensados para quem precisa de um currículo confiável, rápido e honesto."
+            />
+            <div className="mt-10 grid gap-x-12 md:grid-cols-2">
+              {benefits.map((benefit, i) => (
+                <div
+                  key={benefit.title}
+                  className="group flex gap-5 border-t border-line py-6 transition-colors duration-fast ease-standard hover:border-brand-300"
+                >
+                  <span className="font-display text-lg italic leading-6 text-brand-300 transition-colors duration-fast ease-standard group-hover:text-accent-600">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-brand-900">
                       {benefit.title}
                     </h3>
@@ -215,15 +238,11 @@ export default function HomePage() {
         {/* Modelos */}
         <section id="modelos" className="scroll-mt-20 py-16 lg:py-20">
           <div className="container-page">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold tracking-tight text-brand-950 sm:text-3xl">
-                Modelos de currículo
-              </h2>
-              <p className="mt-2 text-brand-600">
-                Três composições diferentes, a mesma estrutura de dados. Troque
-                de modelo sem perder nenhuma informação.
-              </p>
-            </div>
+            <SectionHeader
+              index="03"
+              title="Modelos de currículo"
+              text="Três composições diferentes, a mesma estrutura de dados. Troque de modelo sem perder nenhuma informação."
+            />
             <div className="mt-10">
               <TemplateShowcase />
             </div>
@@ -231,24 +250,26 @@ export default function HomePage() {
         </section>
 
         {/* Assistente em destaque */}
-        <section className="border-y border-line bg-brand-950 py-16 text-white lg:py-20">
-          <div className="container-page grid gap-10 lg:grid-cols-2 lg:items-center">
+        <section className="relative overflow-hidden border-y border-brand-900 bg-brand-950 py-16 text-white lg:py-24">
+          <div aria-hidden className="paper-grid-dark pointer-events-none absolute inset-0" />
+          <div className="container-page relative grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              <p className="flex items-center gap-3 text-accent-300">
+                <span className="font-display text-lg italic leading-none">
+                  assistente
+                </span>
+                <span aria-hidden className="h-px w-10 bg-accent-400/60" />
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-medium leading-[1.12] tracking-tight sm:text-[2.5rem]">
                 Um assistente que respeita os fatos
               </h2>
               <p className="mt-3 max-w-lg leading-relaxed text-brand-100">
-                O assistente melhora clareza, gramática e verbos de ação. Ele não
-                inventa números, cargos ou certificações, e sempre mostra a
+                O assistente melhora clareza, gramática e verbos de ação. Ele
+                não inventa números, cargos ou certificações, e sempre mostra a
                 sugestão antes de aplicar.
               </p>
               <ul className="mt-6 space-y-3 text-sm text-brand-100">
-                {[
-                  "Reescreve resumo e descrições de experiência",
-                  "Sugere verbos de ação e corrige a escrita",
-                  "Aponta informações essenciais que ainda faltam",
-                  "Adapta a linguagem para uma vaga específica",
-                ].map((item) => (
+                {assistantPoints.map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent-300" />
                     {item}
@@ -256,38 +277,51 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-lg border border-white/15 bg-white/5 p-6">
-              <div className="flex items-center gap-2 text-accent-300">
-                <IconSparkles className="h-5 w-5" />
-                <span className="text-sm font-semibold">Sugestão de resumo</span>
+
+            <div className="space-y-4">
+              <Badge tone="accent" className="mb-1">
+                Exemplo
+              </Badge>
+              <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand-300">
+                  Você escreveu
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-brand-200">
+                  {budgetOut}
+                </p>
               </div>
-              <p className="mt-4 rounded-md bg-brand-900/60 p-4 text-sm leading-relaxed text-brand-100">
-                &ldquo;Profissional de atendimento com experiência em suporte ao
-                cliente e resolução de problemas, com foco em qualidade e
-                organização.&rdquo;
-              </p>
-              <p className="mt-3 text-xs text-brand-300">
-                Versão sugerida a partir do que você escreveu. Você decide se
-                aceita, edita ou descarta.
-              </p>
-              <div className="mt-4 flex gap-2">
-                <span className="rounded-md bg-accent-600 px-3 py-1.5 text-xs font-medium">
-                  Aplicar
-                </span>
-                <span className="rounded-md border border-white/20 px-3 py-1.5 text-xs font-medium text-brand-100">
-                  Descartar
-                </span>
+              <div className="rounded-lg border border-accent-400/25 bg-accent-600/10 p-5">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-300">
+                  <IconSparkles className="h-4 w-4" />
+                  Com a sugestão da IA
+                </p>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-white">
+                  {budgetIn}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="rounded-md bg-accent-600 px-3 py-1.5 text-xs font-medium">
+                    Aceitar
+                  </span>
+                  <span className="rounded-md border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-brand-100">
+                    Editar
+                  </span>
+                  <span className="rounded-md px-3 py-1.5 text-xs font-medium text-brand-300">
+                    Descartar
+                  </span>
+                </div>
               </div>
+              <p className="text-xs leading-relaxed text-brand-300">
+                Melhora a apresentação — os fatos continuam sendo os seus. Você
+                revisa a sugestão antes de aplicar.
+              </p>
             </div>
           </div>
         </section>
 
         {/* FAQ */}
         <section id="duvidas" className="scroll-mt-20 py-16 lg:py-20">
-          <div className="container-page max-w-3xl">
-            <h2 className="text-2xl font-bold tracking-tight text-brand-950 sm:text-3xl">
-              Perguntas frequentes
-            </h2>
+          <div className="container-page">
+            <SectionHeader index="04" title="Perguntas frequentes" />
             <div className="mt-8 divide-y divide-line rounded-lg border border-line bg-white">
               {faqs.map((faq) => (
                 <details key={faq.q} className="group px-5 py-4">
@@ -295,7 +329,7 @@ export default function HomePage() {
                     {faq.q}
                     <IconPlus
                       aria-hidden
-                      className="h-4 w-4 shrink-0 text-brand-400 transition-transform group-open:rotate-45"
+                      className="h-4 w-4 shrink-0 text-brand-400 transition-transform duration-fast ease-standard group-open:rotate-45"
                     />
                   </summary>
                   <p className="mt-3 text-sm leading-relaxed text-brand-600">
@@ -308,27 +342,30 @@ export default function HomePage() {
         </section>
 
         {/* CTA final */}
-        <section className="pb-20">
-          <div className="container-page">
-            <div className="flex flex-col items-start justify-between gap-6 rounded-xl border border-brand-100 bg-brand-50 px-6 py-10 sm:flex-row sm:items-center">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-brand-900 text-white">
-                  <IconBriefcase className="h-6 w-6" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-brand-950">
-                    Comece seu currículo agora
-                  </h2>
-                  <p className="mt-1 text-sm text-brand-600">
-                    Leva poucos minutos. Você pode salvar e continuar depois.
-                  </p>
-                </div>
-              </div>
-              <Link href="/criar-conta" className={buttonStyles("primary", "lg")}>
-                Criar currículo grátis
-                <IconArrowRight className="h-4 w-4" />
-              </Link>
+        <section className="border-t border-line py-16 lg:py-24">
+          <div className="container-page grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="max-w-xl">
+              <p className="flex items-center gap-3 text-accent-700">
+                <span className="font-display text-lg italic leading-none">
+                  próximo passo
+                </span>
+                <span aria-hidden className="h-px w-10 bg-accent-400/60" />
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-medium leading-[1.12] tracking-tight text-brand-950 sm:text-[2.6rem]">
+                Comece seu currículo agora
+              </h2>
+              <p className="mt-3 text-brand-600">
+                Leva poucos minutos e você pode salvar para continuar depois.
+                Grátis nesta versão, sem cobrança.
+              </p>
             </div>
+            <Link
+              href="/criar-conta"
+              className={buttonStyles("primary", "lg", "group")}
+            >
+              Criar currículo grátis
+              <IconArrowRight className="h-4 w-4 transition-transform duration-fast ease-standard group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </section>
       </main>
