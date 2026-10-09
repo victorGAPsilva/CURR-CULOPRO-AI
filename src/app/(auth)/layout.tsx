@@ -10,8 +10,16 @@ export default function AuthLayout({
 }) {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      <aside className="hidden flex-col justify-between bg-brand-950 p-10 text-white lg:flex">
-        <Link href="/" aria-label="CurrículoPro AI — página inicial">
+      <aside className="relative hidden flex-col justify-between overflow-hidden bg-brand-950 p-10 text-white lg:flex">
+        <div
+          aria-hidden
+          className="paper-grid-dark pointer-events-none absolute inset-0"
+        />
+        <Link
+          href="/"
+          aria-label="CurrículoPro AI — página inicial"
+          className="relative"
+        >
           <span className="inline-flex items-center gap-2">
             <span className="text-base font-semibold tracking-tight">
               Currículo<span className="text-accent-300">Pro</span> AI
@@ -19,8 +27,14 @@ export default function AuthLayout({
           </span>
         </Link>
 
-        <div className="max-w-md">
-          <h2 className="text-2xl font-bold leading-snug">
+        <div className="relative max-w-md">
+          <p className="flex items-center gap-3 text-accent-300">
+            <span className="font-display text-lg italic leading-none">
+              o documento
+            </span>
+            <span aria-hidden className="h-px w-10 bg-accent-400/60" />
+          </p>
+          <h2 className="mt-3 font-display text-2xl font-medium leading-[1.18] tracking-tight sm:text-[1.9rem]">
             Um currículo claro aumenta suas chances de ser lido com atenção.
           </h2>
           <ul className="mt-6 space-y-3 text-sm text-brand-100">
@@ -38,7 +52,7 @@ export default function AuthLayout({
           </ul>
         </div>
 
-        <p className="text-xs text-brand-300">
+        <p className="relative text-xs text-brand-300">
           Ferramenta de organização e redação. Não garante contratação nem
           aprovação em processos seletivos.
         </p>
