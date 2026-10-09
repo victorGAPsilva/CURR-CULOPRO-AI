@@ -6,7 +6,6 @@ import { Button, buttonStyles } from "@/components/ui/button";
 import { Badge } from "@/components/ui/surfaces";
 import { IconCheck, IconInfo } from "@/components/ui/icons";
 import { getPlanDefinition } from "@/lib/plans/rules";
-import { getServerConfig } from "@/lib/config";
 import { getCurrentUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
 export default async function PricingPage() {
   const free = getPlanDefinition("free");
   const premium = getPlanDefinition("premium");
-  const paymentsEnabled = getServerConfig().payments.enabled;
   const user = await getCurrentUser();
 
   return (
@@ -83,8 +81,8 @@ export default async function PricingPage() {
               <p className="mt-2 text-sm text-brand-600">
                 {premium.description}
               </p>
-              <p className="mt-5 text-3xl font-bold text-brand-950">
-                {paymentsEnabled ? "Assinar" : "Demonstração"}
+              <p className="mt-5 text-sm font-medium text-brand-600">
+                Sem cobrança nesta versão
               </p>
 
               <ul className="mt-6 flex-1 space-y-3 text-sm text-brand-700">

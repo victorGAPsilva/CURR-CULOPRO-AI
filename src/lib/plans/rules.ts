@@ -24,7 +24,9 @@ export function getPlanDefinition(plan: PlanId): PlanDefinition {
     return {
       id: "premium",
       name: "Premium",
-      priceLabel: "Demonstração",
+      // Valor real virá do provedor de pagamento quando integrado.
+      // Até lá, nada é exibido como preço na interface.
+      priceLabel: "A definir",
       aiDailyLimit: config.ai.premiumDailyLimit,
       allowsPremiumTemplates: true,
       description: "Para quem está aplicando a várias vagas e quer personalizar.",
