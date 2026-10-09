@@ -37,3 +37,7 @@ yarn-error.log*
 
 # test output
 /coverage
+
+# opencode agent skills (locais — instaladas globalmente na máquina,
+# fora do controle de versão do app)
+/.opencode/skills/
