@@ -136,10 +136,12 @@ export function DashboardClient({
                   <Card className="flex h-full flex-col">
                     <div className="flex-1 p-5">
                       <div className="flex items-start justify-between gap-3">
-                        <h2 className="text-base font-semibold text-brand-900">
+                        <h2 className="min-w-0 break-words text-base font-semibold text-brand-900">
                           {resume.title}
                         </h2>
-                        <Badge tone="neutral">{template?.name ?? "Modelo"}</Badge>
+                        <Badge tone="neutral" className="shrink-0">
+                          {template?.name ?? "Modelo"}
+                        </Badge>
                       </div>
                       <p className="mt-1 text-xs text-brand-500">
                         Editado {formatRelative(resume.updatedAt)}

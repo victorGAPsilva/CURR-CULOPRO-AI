@@ -14,6 +14,7 @@ import {
   IconCheck,
   IconDocument,
   IconDownload,
+  IconPlus,
   IconSparkles,
 } from "@/components/ui/icons";
 
@@ -292,12 +293,10 @@ export default function HomePage() {
                 <details key={faq.q} className="group px-5 py-4">
                   <summary className="flex cursor-pointer items-center justify-between gap-4 text-sm font-semibold text-brand-900 marker:content-none">
                     {faq.q}
-                    <span
+                    <IconPlus
                       aria-hidden
-                      className="text-brand-400 transition-transform group-open:rotate-45"
-                    >
-                      +
-                    </span>
+                      className="h-4 w-4 shrink-0 text-brand-400 transition-transform group-open:rotate-45"
+                    />
                   </summary>
                   <p className="mt-3 text-sm leading-relaxed text-brand-600">
                     {faq.a}

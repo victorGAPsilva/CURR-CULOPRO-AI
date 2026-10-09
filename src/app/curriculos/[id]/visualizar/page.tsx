@@ -10,7 +10,7 @@ import { PdfDownloadButton } from "@/components/pdf/PdfDownloadButton";
 import { PrintButton } from "@/components/pdf/PrintButton";
 import { buttonStyles } from "@/components/ui/button";
 import { Badge } from "@/components/ui/surfaces";
-import { IconEdit } from "@/components/ui/icons";
+import { IconArrowLeft, IconEdit } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Visualizar e exportar",
@@ -35,7 +35,8 @@ export default async function ResumeViewPage({
         <div className="container-page flex flex-wrap items-center justify-between gap-3 py-3">
           <div className="flex items-center gap-3">
             <Link href="/painel" className={buttonStyles("ghost", "sm")}>
-              ← Painel
+              <IconArrowLeft className="h-4 w-4" />
+              Painel
             </Link>
             <div>
               <h1 className="text-sm font-semibold text-brand-900">
